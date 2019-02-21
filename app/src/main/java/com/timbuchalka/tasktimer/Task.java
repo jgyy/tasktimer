@@ -3,7 +3,7 @@ package com.timbuchalka.tasktimer;
 import java.io.Serializable;
 
 /**
- * Created by timbuchalka on 28/11/16.
+ * Created by jgyy on 20th February 2019.
  */
 
 class Task implements Serializable {
@@ -21,23 +21,23 @@ class Task implements Serializable {
         mSortOrder = sortOrder;
     }
 
-    public long getId() {
+    long getId() {
         return m_Id;
     }
 
-    public String getName() {
+    String getName() {
         return mName;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return mDescription;
     }
 
-    public int getSortOrder() {
+    int getSortOrder() {
         return mSortOrder;
     }
 
-    public void setId(long id) {
+    void setId(long id) {
         this.m_Id = id;
     }
 
