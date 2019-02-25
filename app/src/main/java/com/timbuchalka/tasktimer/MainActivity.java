@@ -335,4 +335,10 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
         dialog.setArguments(args);
         dialog.show(getSupportFragmentManager(), null);
     }
+
+    @Override
+    public void onTaskLongClick(Task task) {
+        Log.d(TAG, "onTaskLongClick: called");
+        Toast.makeText(this, "Task " + task.getId() + " clicked", Toast.LENGTH_SHORT).show();
+    }
 }

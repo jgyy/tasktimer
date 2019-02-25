@@ -36,11 +36,11 @@ class Timing implements Serializable {
         m_Id = id;
     }
 
-    Task getTaskId() {
+    Task getTask() {
         return mTask;
     }
 
-    void setTaskId(Task taskId) {
+    void setTask(Task taskId) {
         mTask = taskId;
     }
 
