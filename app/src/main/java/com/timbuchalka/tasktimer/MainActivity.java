@@ -2,6 +2,7 @@ package com.timbuchalka.tasktimer;
 
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
 
     private AlertDialog mDialog = null;         // module scope because we need to dismiss it in onStop
                                                 // e.g. when orientation changes) to avoid memory leaks.
+
+    private Timing mCurrentTiming = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,12 +189,12 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
     }
 
     @Override
-    public void onEditClick(Task task) {
+    public void onEditClick(@NonNull Task task) {
         taskEditRequest(task);
     }
 
     @Override
-    public void onDeleteClick(Task task) {
+    public void onDeleteClick(@NonNull Task task) {
         Log.d(TAG, "onDeleteClick: starts");
 
         AppDialog dialog = new AppDialog();
@@ -337,8 +340,26 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
     }
 
     @Override
-    public void onTaskLongClick(Task task) {
+    public void onTaskLongClick(@NonNull Task task) {
         Log.d(TAG, "onTaskLongClick: called");
         Toast.makeText(this, "Task " + task.getId() + " clicked", Toast.LENGTH_SHORT).show();
+        TextView taskName = findViewById(R.id.current_task);
+        if (mCurrentTiming != null) {
+            if (task.getId() == mCurrentTiming.getTask().getId()) {
+                // the current task was tapped a second time, so stop timing
+                // TODO save Timing(mCurrentTiming);
+                mCurrentTiming = null;
+                taskName.setText(getString(R.string.no_task_message));
+            } else {
+                // a new task is being timed, so stop the old one first
+                // TODO saveTiming(mCurrentTiming);
+                mCurrentTiming = new Timing(task);
+                taskName.setText("Timing " + mCurrentTiming.getTask().getName());
+            }
+        } else {
+            // no task being timed, so start timing the new task
+            mCurrentTiming = new Timing(task);
+            taskName.setText("Timing " + mCurrentTiming.getTask().getName());
+        }
     }
 }
