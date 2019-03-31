@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.timbuchalka.tasktimer.debug.TestData;
+
 public class MainActivity extends AppCompatActivity implements CursorRecyclerViewAdapter.OnTaskClickListener,
                                                                AddEditActivityFragment.OnSaveClicked,
                                                                AppDialog.DialogEvents {
@@ -36,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
 
     private AlertDialog mDialog = null;         // module scope because we need to dismiss it in onStop
                                                 // e.g. when orientation changes) to avoid memory leaks.
-
-    private Timing mCurrentTiming = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        if(BuildConfig.DEBUG) {
+            MenuItem generate = menu.findItem(R.id.menumain_generate);
+            generate.setVisible(true);
+        }
         return true;
     }
 
@@ -127,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
                 showAboutDialog();
                 break;
             case R.id.menumain_generate:
+                TestData.generateTestData(getContentResolver());
                 break;
             case android.R.id.home:
                 Log.d(TAG, "onOptionsItemSelected: home button pressed");
@@ -341,25 +347,6 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
 
     @Override
     public void onTaskLongClick(@NonNull Task task) {
-        Log.d(TAG, "onTaskLongClick: called");
-        Toast.makeText(this, "Task " + task.getId() + " clicked", Toast.LENGTH_SHORT).show();
-        TextView taskName = findViewById(R.id.current_task);
-        if (mCurrentTiming != null) {
-            if (task.getId() == mCurrentTiming.getTask().getId()) {
-                // the current task was tapped a second time, so stop timing
-                // TODO save Timing(mCurrentTiming);
-                mCurrentTiming = null;
-                taskName.setText(getString(R.string.no_task_message));
-            } else {
-                // a new task is being timed, so stop the old one first
-                // TODO saveTiming(mCurrentTiming);
-                mCurrentTiming = new Timing(task);
-                taskName.setText("Timing " + mCurrentTiming.getTask().getName());
-            }
-        } else {
-            // no task being timed, so start timing the new task
-            mCurrentTiming = new Timing(task);
-            taskName.setText("Timing " + mCurrentTiming.getTask().getName());
-        }
+        // Required to satisfy the interface
     }
 }
