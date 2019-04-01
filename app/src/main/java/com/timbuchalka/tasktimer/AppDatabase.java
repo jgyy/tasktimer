@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Created by Jeffrey on 19/03/19.
+ * Created by timbuchalka on 19/10/16.
  *
  * Basic database class for the application.
  *
@@ -97,22 +97,22 @@ class AppDatabase extends SQLiteOpenHelper {
                 + " END;";
         Log.d(TAG, sSQL);
         db.execSQL(sSQL);
-
     }
 
     private void addDurationsView(SQLiteDatabase db) {
-        /**
-         * CREATE VIEW vwTaskDurations AS
-         * SELECT Timings._id,
-         * Tasks.Name,
-         * Tasks.Description,
-         * Timings.StartTime,
-         * DATE(Timings.StartTime, 'unixepoch') AS StartDate,
-         * SUM(Timings.Duration) AS Duration
-         * FROM Tasks INNER JOIN Timings
-         * ON Tasks._id = Timings.TaskId
-         * GROUP BY Tasks._id, StartDate;
+            /*
+         CREATE VIEW vwTaskDurations AS
+         SELECT Timings._id,
+         Tasks.Name,
+         Tasks.Description,
+         Timings.StartTime,
+         DATE(Timings.StartTime, 'unixepoch') AS StartDate,
+         SUM(Timings.Duration) AS Duration
+         FROM Tasks INNER JOIN Timings
+         ON Tasks._id = Timings.TaskId
+         GROUP BY Tasks._id, StartDate;
          */
+
         String sSQL = "CREATE VIEW " + DurationsContract.TABLE_NAME
                 + " AS SELECT " + TimingsContract.TABLE_NAME + "." + TimingsContract.Columns._ID + ", "
                 + TasksContract.TABLE_NAME + "." + TasksContract.Columns.TASKS_NAME + ", "
@@ -124,10 +124,23 @@ class AppDatabase extends SQLiteOpenHelper {
                 + " AS " + DurationsContract.Columns.DURATIONS_DURATION
                 + " FROM " + TasksContract.TABLE_NAME + " JOIN " + TimingsContract.TABLE_NAME
                 + " ON " + TasksContract.TABLE_NAME + "." + TasksContract.Columns._ID + " = "
-                + TimingsContract.TABLE_NAME + "." + TimingsContract.Columns._ID
+                + TimingsContract.TABLE_NAME + "." + TimingsContract.Columns.TIMINGS_TASK_ID
                 + " GROUP BY " + DurationsContract.Columns.DURATIONS_START_DATE + ", " + DurationsContract.Columns.DURATIONS_NAME
                 + ";";
         Log.d(TAG, sSQL);
         db.execSQL(sSQL);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

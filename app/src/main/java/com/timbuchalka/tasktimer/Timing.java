@@ -7,21 +7,24 @@ import java.util.Date;
 
 /**
  * Simple timing object.
- * Sets it's start time when created, and calculates how long since creation,
+ * Sets its start time when created, and calculates how long since creation,
  * when setDuration is called.
+ * 
+ * Created by timbuchalka for Android Oreo with Java course
+ * from www.learnprogramming.academy
  */
 
 class Timing implements Serializable {
-    public static final long serialVersionUID = 20161120L;
+    private static final long serialVersionUID = 20161120L;
     private static final String TAG = Timing.class.getSimpleName();
-
+    
     private long m_Id;
     private Task mTask;
     private long mStartTime;
     private long mDuration;
 
-    public Timing(Task taskId) {
-        mTask = taskId;
+    public Timing(Task task) {
+        mTask = task;
         // Initialise the start time to now and the duration to zero for a new object.
         Date currentTime = new Date();
         mStartTime = currentTime.getTime() / 1000; // We are only tracking whole seconds, not milliseconds
@@ -40,8 +43,8 @@ class Timing implements Serializable {
         return mTask;
     }
 
-    void setTask(Task taskId) {
-        mTask = taskId;
+    void setTask(Task task) {
+        mTask = task;
     }
 
     long getStartTime() {
@@ -59,7 +62,7 @@ class Timing implements Serializable {
     void setDuration() {
         // Calculate the duration from mStartTime to dateTime.
         Date currentTime = new Date();
-        mDuration = (currentTime.getTime() / 1000) - mStartTime; // Working in seconds, not milliseconds
+        mDuration = (currentTime.getTime() / 1000) - mStartTime; // working in seconds, not milliseconds
         Log.d(TAG, mTask.getId() + " - Start time: " + mStartTime + " | Duration: " + mDuration);
     }
 }

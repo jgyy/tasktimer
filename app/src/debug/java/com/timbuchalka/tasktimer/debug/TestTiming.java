@@ -1,7 +1,8 @@
 package com.timbuchalka.tasktimer.debug;
 
 /**
- * Created by Jeffrey for Android Oreo with Java
+ * Created by timbuchalka for Android Oreo with Java course
+ * from www.learnprogramming.academy
  */
 
 public class TestTiming {

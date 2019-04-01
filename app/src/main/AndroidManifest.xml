@@ -24,6 +24,15 @@
             android:authorities="com.timbuchalka.tasktimer.provider"
             android:exported="false"/>
 
+        <activity
+            android:name=".DurationsReport"
+            android:label="@string/title_activity_durations_report"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timbuchalka.tasktimer.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

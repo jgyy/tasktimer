@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
- * Created by jgyy on 25th February 2019.
+ * Created by timbuchalka on 1/12/16.
  */
 
 class CursorRecyclerViewAdapter extends RecyclerView.Adapter<CursorRecyclerViewAdapter.TaskViewHolder> {
@@ -88,7 +88,7 @@ class CursorRecyclerViewAdapter extends RecyclerView.Adapter<CursorRecyclerViewA
             View.OnLongClickListener buttonLongListener = new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Log.d(TAG, "onLongClick: starts");
+                    Log.d(TAG, "onLongClick starts");
                     if(mListener != null) {
                         mListener.onTaskLongClick(task);
                         return true;
@@ -128,6 +128,8 @@ class CursorRecyclerViewAdapter extends RecyclerView.Adapter<CursorRecyclerViewA
             return null;
         }
 
+        int numItems = getItemCount();
+
         final Cursor oldCursor = mCursor;
         mCursor = newCursor;
         if(newCursor != null) {
@@ -135,7 +137,7 @@ class CursorRecyclerViewAdapter extends RecyclerView.Adapter<CursorRecyclerViewA
             notifyDataSetChanged();
         } else {
             // notify the observers about the lack of a data set
-            notifyItemRangeRemoved(0, getItemCount());
+            notifyItemRangeRemoved(0, numItems);
         }
         return oldCursor;
 

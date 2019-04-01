@@ -18,7 +18,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.security.InvalidParameterException;
 
@@ -52,7 +51,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                     + " must implement CursorRecyclerViewAdapter.OnTaskClickListener interface");
         }
 
-        //noinspection deprecation
         getLoaderManager().initLoader(LOADER_ID, null, this);
         setTimingText(mCurrentTiming);
     }

@@ -8,7 +8,7 @@ import static com.timbuchalka.tasktimer.AppProvider.CONTENT_AUTHORITY;
 import static com.timbuchalka.tasktimer.AppProvider.CONTENT_AUTHORITY_URI;
 
 /**
- * Created by Jeffrey on 18/03/19.
+ * Created by timbuchalka on 18/10/16.
  */
 
 public class TasksContract {

@@ -8,7 +8,7 @@ import static com.timbuchalka.tasktimer.AppProvider.CONTENT_AUTHORITY;
 import static com.timbuchalka.tasktimer.AppProvider.CONTENT_AUTHORITY_URI;
 
 /**
- * Created by Jeffrey on 31/03/19.
+ * Created by timbuchalka on 22nd March 2018.
  */
 
 public class DurationsContract {
@@ -19,10 +19,11 @@ public class DurationsContract {
     public static class Columns {
         public static final String _ID = BaseColumns._ID;
         public static final String DURATIONS_NAME = TasksContract.Columns.TASKS_NAME;
-        public static final String DURATIONS_DESCRIPTION= TasksContract.Columns.TASKS_DESCRIPTION;
-        public static final String DURATIONS_START_TIME= TimingsContract.Columns.TIMINGS_START_TIME;
-        public static final String DURATIONS_START_DATE= "StartDate";
-        public static final String DURATIONS_DURATION= TimingsContract.Columns.TIMINGS_DURATION;
+        public static final String DURATIONS_DESCRIPTION = TasksContract.Columns.TASKS_DESCRIPTION;
+        public static final String DURATIONS_START_TIME = TimingsContract.Columns.TIMINGS_START_TIME;
+        public static final String DURATIONS_START_DATE = "StartDate";
+        public static final String DURATIONS_DURATION = TimingsContract.Columns.TIMINGS_DURATION;
+
 
         private Columns() {
             // private constructor to prevent instantiation

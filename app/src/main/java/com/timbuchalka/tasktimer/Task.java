@@ -3,7 +3,7 @@ package com.timbuchalka.tasktimer;
 import java.io.Serializable;
 
 /**
- * Created by jgyy on 20th February 2019.
+ * Created by timbuchalka on 28/11/16.
  */
 
 class Task implements Serializable {

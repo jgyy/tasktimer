@@ -11,12 +11,14 @@ import com.timbuchalka.tasktimer.TimingsContract;
 import java.util.GregorianCalendar;
 
 /**
- * Created by Jeffrey for Android Oreo with Java
+ * Created by timbuchalka for Android Oreo with Java course
+ * from www.learnprogramming.academy
  */
 
 public class TestData {
 
     public static void generateTestData(ContentResolver contentResolver) {
+
         final int SECS_IN_DAY = 86400;
         final int LOWER_BOUND = 100;
         final int UPPER_BOUND = 500;
@@ -34,7 +36,7 @@ public class TestData {
                 // generate between 100 and 500 random timings for this task
                 int loopCount = LOWER_BOUND + getRandomInt(UPPER_BOUND - LOWER_BOUND);
 
-                for(int i=0; i<loopCount; i++) {
+                for(int i=0; i< loopCount; i++) {
                     long randomDate = randomDateTime();
 
                     // generate a random duration between 0 and 4 hours
@@ -46,10 +48,10 @@ public class TestData {
                     // add it to the database
                     saveCurrentTiming(contentResolver, testTiming);
                 }
-
             } while(cursor.moveToNext());
             cursor.close();
         }
+
     }
 
     private static int getRandomInt(int max) {
@@ -68,7 +70,7 @@ public class TestData {
         int year = startYear + getRandomInt(endYear - startYear);
 
         GregorianCalendar gc = new GregorianCalendar(year, month, 1);
-        int day = 1 + getRandomInt(gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH) - 1);
+        int day = 1 + getRandomInt(gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH) -1);
 
         gc.set(year, month, day, hour, min, sec);
         return gc.getTimeInMillis();

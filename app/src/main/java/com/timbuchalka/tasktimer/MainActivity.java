@@ -1,16 +1,16 @@
 package com.timbuchalka.tasktimer;
 
 import android.annotation.SuppressLint;
-import android.content.res.Configuration;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements CursorRecyclerVie
                 taskEditRequest(null);
                 break;
             case R.id.menumain_showDurations:
+                startActivity(new Intent(this, DurationsReport.class));
                 break;
             case R.id.menumain_settings:
                 break;
